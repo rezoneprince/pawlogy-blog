@@ -5,20 +5,26 @@ import { SlSocialFacebook } from "react-icons/sl";
 
 const Footer = () => {
   return (
-    <div className="flex justify-between">
-      © {new Date().getFullYear()} All Rights Reserved By Pawlogy
-      <div className="flex justify-center items-center gap-2">
-        <p className="border-1 rounded-full w-6 h-6 flex justify-center items-center">
-          <SlSocialFacebook />
+    <footer className="w-full border-t bg-white py-4">
+      <div className="max-w-7xl mx-auto flex flex-col sm:flex-row justify-between items-center px-4 sm:px-6 lg:px-8 gap-3">
+        <p className="text-xs sm:text-sm md:text-md lg:text-base text-gray-700 text-center sm:text-left">
+          © {new Date().getFullYear()} All Rights Reserved By Pawlogy
         </p>
-        <p className="border-1 rounded-full w-6 h-6 flex justify-center items-center">
-          <FaXTwitter />
-        </p>
-        <p className="border-1 rounded-full w-6 h-6 flex justify-center items-center">
-          <FaInstagram />
-        </p>
+
+        {/* Social */}
+        <div className="flex justify-center items-center gap-3">
+          <p className="border rounded-full w-7 h-7 sm:w-8 sm:h-8 flex justify-center items-center hover:bg-gray-100 cursor-pointer">
+            <SlSocialFacebook size={14} />
+          </p>
+          <p className="border rounded-full w-7 h-7 sm:w-8 sm:h-8 flex justify-center items-center hover:bg-gray-100 cursor-pointer">
+            <FaXTwitter size={14} />
+          </p>
+          <p className="border rounded-full w-7 h-7 sm:w-8 sm:h-8 flex justify-center items-center hover:bg-gray-100 cursor-pointer">
+            <FaInstagram size={14} />
+          </p>
+        </div>
       </div>
-    </div>
+    </footer>
   );
 };
 
