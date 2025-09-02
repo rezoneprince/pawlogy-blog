@@ -30,6 +30,10 @@ const Banner = () => {
                 <p className="text-xs text-gray-500 mt-1">
                   {new Date().toDateString()}
                 </p>
+                {/* All Post Button */}
+                <button className="border px-6 mt-2 py-1 rounded text-sm sm:text-md hover:cursor-pointer text-blue-600 transition">
+                  All Post
+                </button>
               </div>
             ))}
           </div>
