@@ -1,5 +1,6 @@
 import { blogData } from "@/data/blog-data";
 import Image from "next/image";
+import Link from "next/link";
 import React from "react";
 
 const Banner = () => {
@@ -16,14 +17,18 @@ const Banner = () => {
           <div className="md:col-span-6 my-5">
             {blogData.slice(0, 1).map((item) => (
               <div className="mb-2" key={item.id}>
-                <Image
-                  src={item.image}
-                  alt={item.title}
-                  width={500}
-                  height={500}
-                  className="w-full h-auto object-cover rounded-lg"
-                />
-                <p className="text-2xl font-bold mt-2">{item.title}</p>
+                <Link href="/view">
+                  <div>
+                    <Image
+                      src={item.image}
+                      alt={item.title}
+                      width={500}
+                      height={500}
+                      className="w-full h-auto object-cover rounded-lg"
+                    />
+                    <p className="text-2xl font-bold mt-2">{item.title}</p>
+                  </div>
+                </Link>
                 <p className="text-sm mt-1">
                   {item.description.split(" ").slice(0, 20).join(" ")}...
                 </p>
