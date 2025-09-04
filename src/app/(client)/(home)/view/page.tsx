@@ -26,14 +26,14 @@ const ViewPage = () => {
           </div>
 
           <div>
-            <div className="flex justify-center ">
+            <div className="flex justify-center">
               <div className="overflow-hidden rounded-md w-[1200px] h-[700px]">
                 <Image
                   src={item.image}
                   alt="#"
                   width={1200}
                   height={400}
-                  className="rounded-md object-cover transition-transform duration-[3000ms] ease-in-out hover:scale-125"
+                  className="rounded-md object-cover transition-transform duration-[4000ms] ease-in-out hover:scale-110"
                 />
               </div>
             </div>
