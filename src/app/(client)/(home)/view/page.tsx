@@ -1,17 +1,35 @@
-import { blogData } from "@/data/blog-data";
+"use client";
 import Image from "next/image";
-import React from "react";
+import { useEffect, useState } from "react";
 import ads from "@/assets/ads-2.webp";
 
+interface Blog {
+  _id: string;
+  title: string;
+  description: string;
+  image: string;
+  createdAt: string;
+  author_img?: string;
+}
 const ViewPage = () => {
+  const [blogs, setBlogs] = useState<Blog[]>([]);
+  useEffect(() => {
+    fetch("http://localhost:5000/api/blogs")
+      .then((res) => res.json())
+      .then((data) => setBlogs(data))
+      .catch((error) => console.log(error));
+  }, []);
+
+  if (blogs.length === 0) return <p>Loading...</p>;
+
   return (
     <div>
-      {blogData.slice(0, 1).map((item) => (
-        <div key={item.id}>
+      {blogs.slice(0, 1).map((item) => (
+        <div key={item._id}>
           <h2 className="text-5xl mt-2">{item.title}</h2>
-          <div className="my-4 flex" key={item.id}>
+          <div className="my-4 flex" key={item._id}>
             <Image
-              src={item.author_img}
+              src={item.image}
               alt={item.title}
               width={40}
               height={50}
@@ -35,31 +53,10 @@ const ViewPage = () => {
                   height={400}
                   className="rounded-md object-cover transition-transform duration-[4000ms] ease-in-out hover:scale-110"
                 />
-              </div>
-            </div>
-
-            <p className="my-5 flex justify-center">{item.description}</p>
-            <div className="flex justify-center ">
-              <Image
-                src={ads}
-                alt="#"
-                width={600}
-                height={100}
-                className="rounded-md"
-              ></Image>
+              </div>{" "}
             </div>
             <p className="my-5 flex justify-center">{item.description}</p>
             <div className="flex justify-center ">
-              <Image
-                src={ads}
-                alt="#"
-                width={600}
-                height={100}
-                className="rounded-md"
-              ></Image>
-            </div>
-            <p className="my-5 flex justify-center">{item.description}</p>
-            <div className="flex justify-center my-5">
               <Image
                 src={ads}
                 alt="#"
@@ -70,7 +67,7 @@ const ViewPage = () => {
             </div>
           </div>
         </div>
-      ))}
+      ))}{" "}
     </div>
   );
 };

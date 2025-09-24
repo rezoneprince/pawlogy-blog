@@ -1,10 +1,26 @@
-import { blogData } from "@/data/blog-data";
+"use client";
 import Image from "next/image";
-import React from "react";
+import React, { useEffect, useState } from "react";
 import adds1 from "@/assets/ads-1.webp";
 import adds2 from "@/assets/ads-2.webp";
+import Link from "next/link";
 
+interface Blog {
+  id: number;
+  title: string;
+  description: string;
+  image: string;
+  createdAt: string;
+}
 const Updated = () => {
+  const [blogs, setBlogs] = useState<Blog[]>([]);
+
+  useEffect(() => {
+    fetch("http://localhost:5000/api/blogs")
+      .then((res) => res.json())
+      .then((data) => setBlogs(data))
+      .catch((error) => console.log(error));
+  }, []);
   return (
     <>
       <div className="text-2xl font-bold border-b pb-2"></div>
@@ -15,23 +31,25 @@ const Updated = () => {
             {/* Big Featured Post */}
             <div className="md:col-span-12 my-5">
               <div className="grid grid-cols-1 lg:grid-cols-2">
-                {blogData.slice(0, 5).map((item) => (
-                  <div className="mb-4 flex items-start" key={item.id}>
-                    <Image
-                      src={item.image}
-                      alt={item.title}
-                      width={100}
-                      height={100}
-                      className="rounded-md object-cover"
-                    />
-                    <div className="ml-4">
-                      <p className="text-sm">{item.title}</p>
-                      <p className="text-xs text-gray-500">
-                        {new Date().toDateString()}
-                      </p>
+                <Link href={"/view"}>
+                  {blogs.map((item) => (
+                    <div className="mb-4 flex items-start" key={item.id}>
+                      <Image
+                        src={item.image}
+                        alt={item.title}
+                        width={100}
+                        height={100}
+                        className="rounded-md object-cover"
+                      />
+                      <div className="ml-4">
+                        <p className="text-sm">{item.title}</p>
+                        <p className="text-xs text-gray-500">
+                          {new Date().toDateString()}
+                        </p>
+                      </div>
                     </div>
-                  </div>
-                ))}
+                  ))}
+                </Link>
               </div>
             </div>
           </div>

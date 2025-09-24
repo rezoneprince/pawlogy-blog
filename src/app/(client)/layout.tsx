@@ -1,5 +1,5 @@
-import Footer from "@/components/footer/footer";
-import Navbar from "@/components/navbar";
+import Footer from "@/components/client/footer/footer";
+import Navbar from "@/components/client/navbar";
 import React from "react";
 
 type Props = { children: React.ReactNode };
