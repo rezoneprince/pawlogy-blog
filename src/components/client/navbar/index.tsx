@@ -5,6 +5,7 @@ import Image from "next/image";
 import { FaInstagram } from "react-icons/fa";
 import { FaXTwitter } from "react-icons/fa6";
 import { SlSocialFacebook } from "react-icons/sl";
+import Link from "next/link";
 
 const Navbar = () => {
   return (
@@ -13,16 +14,18 @@ const Navbar = () => {
         {/* Flex container */}
         <div className="flex items-center justify-between py-3">
           {/* Logo */}
-          <div className="flex-shrink-0">
-            {/* Desktop Logo */}
-            <div className="hidden lg:block">
-              <Image src={logo} alt="logo" width={150} height={200} />
+          <Link href={"/"}>
+            <div className="flex-shrink-0">
+              {/* Desktop Logo */}
+              <div className="hidden lg:block">
+                <Image src={logo} alt="logo" width={150} height={200} />
+              </div>
+              {/* Mobile Logo */}
+              <div className="block lg:hidden">
+                <Image src={small} alt="logo" width={40} height={40} />
+              </div>
             </div>
-            {/* Mobile Logo */}
-            <div className="block lg:hidden">
-              <Image src={small} alt="logo" width={40} height={40} />
-            </div>
-          </div>
+          </Link>
 
           {/* Right Side */}
           <div className="flex items-center gap-3 sm:gap-4">
