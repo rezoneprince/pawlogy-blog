@@ -1,5 +1,6 @@
 "use client";
 import Image from "next/image";
+import Link from "next/link";
 import React, { useEffect, useState } from "react";
 
 interface Blog {
@@ -28,13 +29,15 @@ const Slide = () => {
         <div className="md:col-span-6 my-5">
           {blogs.slice(0, 1).map((item) => (
             <div className="mb-2" key={item._id}>
-              <Image
-                src={item.image}
-                alt={item.title}
-                width={500}
-                height={500}
-                className="w-full h-auto object-cover rounded-lg"
-              />
+              <Link href={`/view/${item._id}`}>
+                <Image
+                  src={item.image}
+                  alt={item.title}
+                  width={500}
+                  height={500}
+                  className="w-full h-auto object-cover rounded-lg"
+                />
+              </Link>
             </div>
           ))}
         </div>
@@ -42,13 +45,17 @@ const Slide = () => {
         <div className="md:col-span-6 my-5 flex justify-center items-center">
           {blogs.slice(0, 1).map((item) => (
             <div className="mb-4 flex items-start" key={item._id}>
-              <div className="ml-4">
-                <p className="text-xl mb-5">{item.title}</p>
-                <p className="text-sm text-gray-700 mb-5">{item.description}</p>
-                <p className="text-xs text-gray-500">
-                  {new Date().toDateString()}
-                </p>
-              </div>
+              <Link href={`/view/${item._id}`}>
+                <div className="ml-4">
+                  <p className="text-xl mb-5">{item.title}</p>
+                  <p className="text-sm text-gray-700 mb-5">
+                    {item.description}
+                  </p>
+                  <p className="text-xs text-gray-500">
+                    {new Date().toDateString()}
+                  </p>
+                </div>
+              </Link>
             </div>
           ))}
         </div>

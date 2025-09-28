@@ -6,7 +6,7 @@ import adds2 from "@/assets/ads-2.webp";
 import Link from "next/link";
 
 interface Blog {
-  id: number;
+  _id: number;
   title: string;
   description: string;
   image: string;
@@ -31,9 +31,9 @@ const Updated = () => {
             {/* Big Featured Post */}
             <div className="md:col-span-12 my-5">
               <div className="grid grid-cols-1 lg:grid-cols-2">
-                <Link href={"/view"}>
-                  {blogs.map((item) => (
-                    <div className="mb-4 flex items-start" key={item.id}>
+                {blogs.map((item) => (
+                  <div className="mb-4 flex items-start" key={item._id}>
+                    <Link href={`/view/${item._id}`}>
                       <Image
                         src={item.image}
                         alt={item.title}
@@ -41,15 +41,15 @@ const Updated = () => {
                         height={100}
                         className="rounded-md object-cover"
                       />
-                      <div className="ml-4">
-                        <p className="text-sm">{item.title}</p>
-                        <p className="text-xs text-gray-500">
-                          {new Date().toDateString()}
-                        </p>
-                      </div>
+                    </Link>
+                    <div className="ml-4">
+                      <p className="text-sm">{item.title}</p>
+                      <p className="text-xs text-gray-500">
+                        {new Date().toDateString()}
+                      </p>
                     </div>
-                  ))}
-                </Link>
+                  </div>
+                ))}
               </div>
             </div>
           </div>

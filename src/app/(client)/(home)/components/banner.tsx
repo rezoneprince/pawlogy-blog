@@ -38,7 +38,7 @@ const Banner = () => {
           <div className="md:col-span-6 my-5">
             {blogs.slice(0, 1).map((item) => (
               <div className="mb-2" key={item._id}>
-                <Link href={"/view"}>
+                <Link href={`/view/${item._id}`}>
                   <div>
                     <Image
                       src={item.image}
@@ -68,7 +68,7 @@ const Banner = () => {
           {/* Small List Posts */}
           <div className="md:col-span-6 my-5">
             {blogs.slice(0, 5).map((item) => (
-              <Link href={"/view"} key={item._id}>
+              <Link href={`/view/${item._id}`} key={item._id}>
                 <div className="mb-4 flex items-start">
                   <Image
                     src={item.image}
@@ -98,7 +98,7 @@ const Banner = () => {
 
         <div className="my-5">
           {blogs.slice(0, 5).map((item) => (
-            <Link href={"/view"} key={item._id}>
+            <Link href={`/view/${item._id}`} key={item._id}>
               <div className="pb-3">
                 <p className="font-bold">{item.title}</p>
                 <p className="text-xs text-gray-500">
