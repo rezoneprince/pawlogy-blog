@@ -5,7 +5,7 @@ import { SlSocialFacebook } from "react-icons/sl";
 
 const Footer = () => {
   return (
-    <footer className="w-full border-t bg-white py-4">
+    <footer className="w-full border-t py-4">
       <div className="max-w-7xl mx-auto flex flex-col sm:flex-row justify-between items-center px-4 sm:px-6 lg:px-8 gap-3">
         <p className="text-xs sm:text-sm md:text-md lg:text-base text-gray-700 text-center sm:text-left">
           © {new Date().getFullYear()} All Rights Reserved By Pawlogy
