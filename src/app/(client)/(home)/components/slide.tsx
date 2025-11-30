@@ -49,7 +49,7 @@ const Slide = () => {
                 <div className="ml-4">
                   <p className="text-xl mb-5">{item.title}</p>
                   <p className="text-sm text-gray-700 mb-5">
-                    {item.description}
+                    {item.description.replace(/<[^>]*>/g, "")}
                   </p>
                   <p className="text-xs text-gray-500">
                     {new Date().toDateString()}

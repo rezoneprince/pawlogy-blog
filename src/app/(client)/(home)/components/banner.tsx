@@ -51,7 +51,11 @@ const Banner = () => {
                   </div>
                 </Link>
                 <p className="text-sm mt-1">
-                  {item.description.split(" ").slice(0, 20).join(" ")}
+                  {item.description
+                    .replace(/<[^>]*>/g, "")
+                    .split(" ")
+                    .slice(0, 20)
+                    .join(" ")}
                 </p>
                 <p className="text-xs text-gray-500 mt-1">
                   {new Date(item.createdAt).toDateString()}
@@ -67,7 +71,7 @@ const Banner = () => {
 
           {/* Small List Posts */}
           <div className="md:col-span-6 my-5">
-            {blogs.slice(0, 5).map((item) => (
+            {blogs.slice(0, 6).map((item) => (
               <Link href={`/view/${item._id}`} key={item._id}>
                 <div className="mb-4 flex items-start">
                   <Image
@@ -97,7 +101,7 @@ const Banner = () => {
         </div>
 
         <div className="my-5">
-          {blogs.slice(0, 5).map((item) => (
+          {blogs.slice(0, 6).map((item) => (
             <Link href={`/view/${item._id}`} key={item._id}>
               <div className="pb-3">
                 <p className="font-bold">{item.title}</p>
