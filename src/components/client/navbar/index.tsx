@@ -14,7 +14,9 @@ const Navbar = () => {
   const { theme, setTheme } = useTheme();
   const [mounted, setMounted] = useState(false);
 
-  useEffect(() => setMounted(true), []);
+  useEffect(() => {
+    setMounted(true);
+  }, []);
 
   if (!mounted) return null;
 
@@ -35,7 +37,6 @@ const Navbar = () => {
           </Link>
 
           {/* Right Side */}
-
           <div className="flex items-center gap-3 sm:gap-4">
             {/* 🌙 Dark/Light Toggle */}
             <button
@@ -44,19 +45,19 @@ const Navbar = () => {
             >
               {theme === "dark" ? "🌙" : "☀️"}
             </button>
+
             {/* Social Icons */}
-            <p className="border rounded-full w-8 h-8 flex justify-center items-center cursor-pointer">
-              <SlSocialFacebook size={14} />
-            </p>
-            <p className="border rounded-full w-8 h-8 flex justify-center items-center cursor-pointer">
-              <FaXTwitter size={14} />
-            </p>
-            <p className="border rounded-full w-8 h-8 flex justify-center items-center cursor-pointer">
-              <FaInstagram size={14} />
-            </p>
+            {[SlSocialFacebook, FaXTwitter, FaInstagram].map((Icon, i) => (
+              <p
+                key={i}
+                className="border rounded-full w-8 h-8 flex justify-center items-center cursor-pointer"
+              >
+                <Icon size={14} />
+              </p>
+            ))}
 
             {/* Contact Button */}
-            <button className="border px-3 py-1 rounded text-sm sm:text-md    hover:text-blue-600 transition">
+            <button className="border px-3 py-1 rounded text-sm sm:text-md hover:text-blue-600 transition">
               Contact
             </button>
           </div>
