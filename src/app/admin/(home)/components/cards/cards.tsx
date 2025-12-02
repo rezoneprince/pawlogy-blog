@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { FaBloggerB } from "react-icons/fa";
+import { FaBlog, FaBloggerB, FaCalendarAlt } from "react-icons/fa";
 import { MdLocalPostOffice } from "react-icons/md";
 
 const Cards = () => {
@@ -20,36 +20,42 @@ const Cards = () => {
       <div className="grid grid-cols-1 gap-4 p-4 sm:grid-cols-2 lg:grid-cols-4">
         {/* Total Apartment*/}
         <Link href={"admin/blogs"}>
-          <div className="relative rounded-2xl bg-gradient-to-br from-blue-500 to-blue-600   p-6 text-white shadow-lg">
-            <div className="absolute right-0 top-0 h-24 w-24 rounded-full bg-white/20"></div>
-            <div className="absolute right-10 top-10 h-20 w-20 rounded-full bg-white/10"></div>
+          <div className="group rounded-md p-2 text-black  border border-gray-200 shadow-lg">
             <div className="flex justify-between items-start">
-              <div className="flex h-10 w-10 items-center justify-center rounded-lg bg-white/20">
-                <FaBloggerB className="text-xl" />
+              <div className="flex h-12 w-12 items-center justify-center rounded-lg bg-blue-400 transform transition-transform -translate-y-5 duration-300 ease-in-out group-hover:-translate-y-8">
+                <FaBloggerB className="text-[40px] text-white" />
               </div>
-              <button className="text-white/70">•••</button>
+              <div className="mt-2">
+                <span className="mt-2 text-sm text-blue-400 font-bold flex justify-end">
+                  Total Blog
+                </span>
+                <p className="text-3xl text-gray-700">40,000</p>
+              </div>
             </div>
-            <div className="mt-6">
-              <p className="text-3xl font-bold">40</p>
-              <p className="mt-2 text-sm">Total Blog</p>
+            <div className="flex items-center gap-2">
+              <FaBlog className="text-blue-500" />
+              <span className="text-gray-400 text-sm">More Blog</span>
             </div>
           </div>
         </Link>
 
         {/* cards 2 */}
         <Link href={"admin/blogs"}>
-          <div className="relative rounded-2xl  bg-gradient-to-br from-purple-500 to-purple-600   p-6 text-white shadow-lg">
-            <div className="absolute right-0 top-0 h-24 w-24 rounded-full bg-white/20"></div>
-            <div className="absolute right-10 top-10 h-20 w-20 rounded-full bg-white/10"></div>
+          <div className="group rounded-md p-2 text-black border border-gray-200 shadow-lg">
             <div className="flex justify-between items-start">
-              <div className="flex h-10 w-10 items-center justify-center rounded-lg bg-white/20">
-                <MdLocalPostOffice className="text-xl" />
+              <div className="flex h-12 w-12 items-center justify-center rounded-lg bg-red-400 transform transition-transform -translate-y-5 duration-300 ease-in-out group-hover:-translate-y-8">
+                <MdLocalPostOffice className="text-[40px] text-white" />
               </div>
-              <button className="text-white/70">•••</button>
+              <div className="mt-2">
+                <span className="mt-2 text-sm text-red-400 font-bold flex justify-end">
+                  Total Post
+                </span>
+                <p className="text-3xl text-gray-700">50,000</p>
+              </div>
             </div>
-            <div className="mt-6">
-              <p className="text-3xl font-bold">40</p>
-              <p className="mt-2 text-sm">Total Post</p>
+            <div className="flex items-center gap-2">
+              <FaCalendarAlt className="text-red-400" />
+              <span className="text-gray-400 text-sm">Last 24 Hours</span>
             </div>
           </div>
         </Link>
