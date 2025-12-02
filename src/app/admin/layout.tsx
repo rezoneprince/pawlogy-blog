@@ -5,26 +5,25 @@ import { useEffect, useState } from "react";
 import Header from "@/components/admin/header";
 import Sidebar from "@/components/admin/sidebar";
 
-export default function ProtectedLayout({
+export default function AdminLayout({
   children,
 }: {
   children: React.ReactNode;
 }) {
   const router = useRouter();
-  const [loading, setLoading] = useState(true);
+  const [authorized, setAuthorized] = useState(false);
 
   useEffect(() => {
     const token = localStorage.getItem("token");
+
     if (!token) {
       router.replace("/signin");
     } else {
-      setLoading(false);
+      setAuthorized(true);
     }
   }, [router]);
 
-  if (loading) {
-    return null;
-  }
+  if (!authorized) return null;
 
   return (
     <div className="flex flex-col min-h-screen">
@@ -33,7 +32,7 @@ export default function ProtectedLayout({
         <div>
           <Sidebar />
         </div>
-        <div className="flex-1 overflow-auto p-x-4">{children}</div>
+        <main className="flex-1 overflow-auto p-4">{children}</main>
       </div>
     </div>
   );

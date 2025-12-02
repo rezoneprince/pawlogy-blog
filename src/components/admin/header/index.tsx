@@ -5,7 +5,6 @@ import { useRouter } from "next/navigation";
 import { IoNotifications } from "react-icons/io5";
 import { AiOutlineDown } from "react-icons/ai";
 import Profile from "@/assets/profile_icon.png";
-import { CgProfile } from "react-icons/cg";
 import { IoMdLogIn } from "react-icons/io";
 import Link from "next/link";
 
@@ -87,31 +86,22 @@ const Header = () => {
                 RP
               </span>
               <span className="font-bold mt-2">Admin</span>
-              <span className="text-gray-500 text-sm">join@ecommerce.com</span>
+              <span className="text-gray-500 text-sm">join@mail.com</span>
             </div>
 
             <ul className="flex flex-col">
-              <li className="flex items-center gap-2 px-4 py-2 hover:bg-gray-100 cursor-pointer">
-                <CgProfile /> Profile
-              </li>
-
               {!isLoggedIn ? (
                 <>
                   <Link href="/signin">
-                    <button className="border px-3 py-1 rounded w-full my-1 hover:text-blue-600 transition flex items-center justify-center gap-1">
+                    <button className="border border-gray-200 px-3 py-1 rounded w-full my-1 hover:text-blue-600 transition flex items-center justify-center gap-1">
                       <IoMdLogIn /> Sign In
-                    </button>
-                  </Link>
-                  <Link href="/signup">
-                    <button className="border px-3 py-1 rounded w-full my-1 hover:text-blue-600 transition">
-                      Sign Up
                     </button>
                   </Link>
                 </>
               ) : (
                 <button
                   onClick={handleLogout}
-                  className="border px-3 py-1 rounded w-full my-1 hover:text-blue-600 transition"
+                  className="border border-gray-200 px-3 py-1 rounded w-full my-1 hover:text-blue-600 transition cursor-pointer"
                 >
                   Logout
                 </button>

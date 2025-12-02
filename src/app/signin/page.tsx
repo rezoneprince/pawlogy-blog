@@ -1,15 +1,16 @@
 "use client";
 
-import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
+import Link from "next/link";
 
-export default function SignIn() {
+export default function SignInPage() {
   const router = useRouter();
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [error, setError] = useState("");
 
-  // already logged in? → admin
+  // already logged in
   useEffect(() => {
     if (localStorage.getItem("token")) {
       router.replace("/admin");
@@ -18,45 +19,59 @@ export default function SignIn() {
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
+    setError("");
 
-    const res = await fetch("http://localhost:5000/api/auth/signin", {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ email, password }),
-    });
+    try {
+      const res = await fetch("http://localhost:5000/api/auth/signin", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ email, password }),
+      });
 
-    const data = await res.json();
+      const data = await res.json();
 
-    if (res.ok) {
+      if (!res.ok) {
+        setError(data.message || "Signin failed");
+        return;
+      }
+
       localStorage.setItem("token", data.token);
       router.replace("/admin");
+    } catch {
+      setError("Network error");
     }
   };
 
   return (
-    <div className="max-w-sm mx-auto mt-20">
+    <div className="max-w-sm mx-auto mt-20 shadow-2xl p-4 text-center">
       <h2 className="text-xl font-bold mb-4">Sign In</h2>
 
       <form onSubmit={handleSubmit} className="space-y-3">
         <input
-          className="border w-full p-2"
-          placeholder="Email"
+          className="border border-gray-200 w-full p-2 focus:outline-none"
+          placeholder="Email*"
           value={email}
           onChange={(e) => setEmail(e.target.value)}
+          required
         />
         <input
-          className="border w-full p-2"
-          placeholder="Password"
+          className="border border-gray-200 w-full p-2 focus:outline-none"
           type="password"
+          placeholder="Password*"
           value={password}
           onChange={(e) => setPassword(e.target.value)}
+          required
         />
-        <button className="bg-blue-600 text-white w-full py-2">Signin</button>
+
+        <button className="bg-blue-600 text-white w-full py-2">Sign In</button>
       </form>
+
+      {error && <p className="text-red-500 mt-2">{error}</p>}
+
       <p className="mt-4 text-sm">
-        Don&#39;t have an account ?{" "}
+        Don’t have an account?{" "}
         <Link href="/signup" className="text-blue-500">
-          SignUp
+          Sign Up
         </Link>
       </p>
     </div>
